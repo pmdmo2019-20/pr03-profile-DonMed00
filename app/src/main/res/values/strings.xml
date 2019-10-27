@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Profile</string>
+    <string name="avatar_title">Select Avatar</string>
+    <string name="profile_title">User profile</string>
+</resources>

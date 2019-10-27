@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/bulbasur.webp" />
+        <ignore path="src/main/res/drawable/chikorita.webp" />
+        <ignore path="src/main/res/drawable/cubone.webp" />
+        <ignore path="src/main/res/drawable/feebas.webp" />
+        <ignore path="src/main/res/drawable/giratina.webp" />
+        <ignore path="src/main/res/drawable/gyarados.webp" />
+        <ignore path="src/main/res/drawable/jigglypuff.webp" />
+        <ignore path="src/main/res/drawable/pachirisu.webp" />
+        <ignore path="src/main/res/drawable/pikachu.webp" />
+    </issue>
+</lint>
