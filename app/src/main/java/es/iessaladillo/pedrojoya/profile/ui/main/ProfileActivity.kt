@@ -1,27 +1,70 @@
 package es.iessaladillo.pedrojoya.profile.ui.main
 
-import android.app.Activity
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
 import es.iessaladillo.pedrojoya.profile.utils.*
 import kotlinx.android.synthetic.main.profile_activity.*
-import kotlinx.android.synthetic.main.profile_avatar.*
-import kotlinx.android.synthetic.main.profile_form.*
 
 class ProfileActivity : AppCompatActivity() {
+     lateinit var avatar : Avatar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
-        // TODO
+        setupViews()
+    }
+
+    private fun setupViews() {
+        imgOnClicked()
+        imgAvatar.setOnClickListener { navegateToAvatar() }
+    }
+
+    private fun navegateToAvatar() {
+        //avatar = Avatar(1,R.drawable.bulbasur,"Bulbasur")
+        //val intent = AvatarActivity.newIntent(this,avatar)
+       // startActivity(intent)
+        val intent = Intent(this, AvatarActivity::class.java)
+        startActivity(intent)
+
+    }
+
+
+    private fun imgOnClicked() {
+        imgEmail.setOnClickListener { throwIntent(imgEmail) }
+        imgPhone.setOnClickListener { throwIntent(imgPhone) }
+        imgAddress.setOnClickListener { throwIntent(imgAddress) }
+        imgWeb.setOnClickListener { throwIntent(imgWeb) }
+
+    }
+
+    private fun throwIntent(img: ImageView) {
+        lateinit var intent: Intent
+        when (img) {
+            imgEmail ->
+                intent = newEmailIntent(txtAddress.text.toString())
+            imgPhone ->
+                intent = newDialIntent(txtPhonenumber.text.toString())
+            imgAddress ->
+                intent = newSearchInMapIntent(txtAddress.text.toString())
+            imgWeb ->
+                intent = newViewUriIntent(Uri.parse(txtWeb.text.toString()))
+        }
+
+        if (isActivityAvailable(this, intent)) {
+            startActivity(intent)
+        } else {
+            this.toast(getString(R.string.invalid_Intent))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -38,7 +81,48 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        // TODO
+        if (checkAllEditText()) {
+            this.toast("Avatar saved")
+        }
+    }
+
+    private fun checkAllEditText(): Boolean {
+        if (checkEditText(txtName) && checkEditText(txtEmail) && checkEditText(txtPhonenumber) && checkEditText(
+                txtAddress
+            ) && checkEditText(txtWeb)
+        ) return true
+        return false
+    }
+
+    private fun checkEditText(editText: EditText): Boolean {
+        when (editText) {
+            txtName ->
+                if (editText.text.toString().isBlank()) {
+                    editText.error = getString(R.string.profile_invalid_name)
+                    return false
+                }
+            txtEmail ->
+                if (!editText.text.toString().isValidEmail()) {
+                    editText.error = getString(R.string.profile_invalid_email)
+                    return false
+                }
+            txtPhonenumber ->
+                if (!editText.text.toString().isValidPhone()) {
+                    editText.error = getString(R.string.profile_invalid_phonenumber)
+                    return false
+                }
+            txtAddress ->
+                if (editText.text.toString().isBlank()) {
+                    editText.error = getString(R.string.profile_invalid_address)
+                    return false
+                }
+            txtWeb ->
+                if (!editText.text.toString().isValidUrl()) {
+                    editText.error = getString(R.string.profile_invalid_web)
+                    return false
+                }
+        }
+        return true
     }
 
 }

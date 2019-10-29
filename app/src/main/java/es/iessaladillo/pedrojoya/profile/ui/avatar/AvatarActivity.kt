@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database
@@ -21,7 +22,7 @@ class AvatarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.avatar_activity)
-        // TODO
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -31,7 +32,6 @@ class AvatarActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.mnuSelect) {
-            // TODO
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -40,9 +40,7 @@ class AvatarActivity : AppCompatActivity() {
     companion object {
 
         const val EXTRA_AVATAR = "EXTRA_AVATAR"
-
+        fun newIntent(context: Context, avatar: Avatar): Intent =
+            Intent(context, AvatarActivity::class.java).putExtras(bundleOf(EXTRA_AVATAR to avatar))
     }
-
 }
-
-

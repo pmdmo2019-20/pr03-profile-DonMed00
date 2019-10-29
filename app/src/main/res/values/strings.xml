@@ -2,4 +2,26 @@
     <string name="app_name">Profile</string>
     <string name="avatar_title">Select Avatar</string>
     <string name="profile_title">User profile</string>
+    <string name="name">Name (*)</string>
+    <string name="avatar">Pikachu</string>
+    <string name="nameHint">(name)</string>
+    <string name="email">Email (*)</string>
+    <string name="emailHint">(email)</string>
+    <string name="email_icon">email icon</string>
+    <string name="phone">Phone (*)</string>
+    <string name="phoneHint">(phone)</string>
+    <string name="phone_icon">phone icon</string>
+    <string name="address">Address (*)</string>
+    <string name="addressHint">(address)</string>
+    <string name="web">Web (*)</string>
+    <string name="webHint">(web)</string>
+    <string name="required">(*) Required</string>
+    <string name="profile_invalid_name">Name is required</string>
+    <string name="profile_invalid_email">Invalid email</string>
+    <string name="profile_invalid_phonenumber">Invalid phone</string>
+    <string name="profile_invalid_address">Address is required</string>
+    <string name="profile_invalid_web">Invalid web</string>
+    <string name="avatar_select">Title</string>
+    <string name="profile_save">Profile Save</string>
+    <string name="invalid_Intent">No es posible realizar dicha acción</string>
 </resources>
