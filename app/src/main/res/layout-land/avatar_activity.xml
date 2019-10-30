@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <ImageView
         android:id="@+id/imgAvatar1"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgAvatar4"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
-        app:layout_constraintBottom_toBottomOf="@+id/imgAvatar1"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgAvatar7"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,53 +33,54 @@
 
     <ImageView
         android:id="@+id/imgAvatar2"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintEnd_toEndOf="@+id/imgAvatar1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar1" />
+        app:layout_constraintTop_toBottomOf="@+id/lblAvatar1" />
 
     <ImageView
         android:id="@+id/imgAvatar5"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
-        app:layout_constraintEnd_toEndOf="@+id/imgAvatar4"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar4" />
 
     <ImageView
         android:id="@+id/imgAvatar8"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar5"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar5"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar7" />
 
     <ImageView
         android:id="@+id/imgAvatar3"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar2" />
 
     <ImageView
         android:id="@+id/imgAvatar6"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar3"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar5" />
 
     <ImageView
         android:id="@+id/imgAvatar9"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar6"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar8" />
 
     <CheckBox
         android:id="@+id/chkAvatar1"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar1"
@@ -91,8 +90,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar2"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar2"
@@ -102,8 +101,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar3"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintEnd_toEndOf="@+id/imgAvatar3"
@@ -113,8 +112,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar4"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar1"
@@ -122,8 +121,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar5"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
@@ -131,8 +130,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar6"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar3"
@@ -140,8 +139,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar7"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar4"
@@ -149,8 +148,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar8"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar5"
@@ -158,8 +157,8 @@
 
     <CheckBox
         android:id="@+id/chkAvatar9"
-        android:layout_width="@dimen/avatarWidth"
-        android:layout_height="@dimen/avatarHeight"
+        android:layout_width="@dimen/newWidth"
+        android:layout_height="@dimen/newHeight"
         android:gravity="start"
         android:layoutDirection="rtl"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar6"
@@ -167,7 +166,7 @@
 
     <TextView
         android:id="@+id/lblAvatar1"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -178,7 +177,7 @@
 
     <TextView
         android:id="@+id/lblAvatar2"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -189,7 +188,7 @@
 
     <TextView
         android:id="@+id/lblAvatar3"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -200,7 +199,7 @@
 
     <TextView
         android:id="@+id/lblAvatar4"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -211,7 +210,7 @@
 
     <TextView
         android:id="@+id/lblAvatar5"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -222,7 +221,7 @@
 
     <TextView
         android:id="@+id/lblAvatar6"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -233,7 +232,7 @@
 
     <TextView
         android:id="@+id/lblAvatar7"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -244,7 +243,7 @@
 
     <TextView
         android:id="@+id/lblAvatar8"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -255,7 +254,7 @@
 
     <TextView
         android:id="@+id/lblAvatar9"
-        android:layout_width="@dimen/avatarWidth"
+        android:layout_width="@dimen/newWidth"
         android:layout_height="wrap_content"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -263,7 +262,5 @@
         android:textSize="@dimen/lblAvatarDp"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar9"
         app:layout_constraintStart_toEndOf="@+id/lblAvatar6" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

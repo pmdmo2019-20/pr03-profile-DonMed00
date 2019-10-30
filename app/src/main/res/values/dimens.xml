@@ -6,4 +6,6 @@
     <dimen name="avatarWidth">138dp</dimen>
     <dimen name="avatarHeight">201dp</dimen>
     <dimen name="lblAvatarDp">20dp</dimen>
+    <dimen name="newWidth">228dp</dimen>
+    <dimen name="newHeight">113dp</dimen>
 </resources>

@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.profile.ui.main
 
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -10,11 +9,11 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.toDrawable
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
+import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity.Companion.EXTRA_AVATAR
 import es.iessaladillo.pedrojoya.profile.utils.*
 import kotlinx.android.synthetic.main.profile_activity.*
 
@@ -25,23 +24,37 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
         setupViews()
+       // restoreInstanceState(savedInstanceState)
+
     }
+    /*override fun onSaveInstanceState(outState: Bundle) {
+        if (outState != null) {
+            super.onSaveInstanceState(outState)
+        }
+        outState?.putParcelable(EXTRA_AVATAR,avatar)
+    }
+    private fun restoreInstanceState(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) {
+            avatar = savedInstanceState.getParcelable(EXTRA_AVATAR)
+        }
+    }*/
 
     private fun setupViews() {
-        imgAvatar.setImageResource(Database.queryDefaultAvatar().imageResId)
-        lblAvatar.setText(Database.queryDefaultAvatar().name)
+        avatar = Database.queryDefaultAvatar()
+        imgAvatar.setImageResource(avatar.imageResId)
+        lblAvatar.setText(avatar.name)
         imgOnClicked()
         imgAvatar.setOnClickListener { navegateToAvatar() }
     }
 
     private fun navegateToAvatar() {
         //FALLA IMG ID
-        avatar = Avatar(0,imgAvatar.id,lblAvatar.text.toString())
-        var drawable: Drawable = getDrawable(avatar.imageResId)
         val intent = Intent(this, AvatarActivity::class.java)
-        intent.putExtra("extra_name",avatar.name)
-        intent.putExtra("extra_image",drawable.toString().toInt())
-        startActivity(intent)
+       // intent.putExtra("name",avatar.name)
+       // intent.putExtra("image",avatar.imageResId)
+        intent.putExtra(EXTRA_AVATAR,avatar)
+
+        startActivityForResult(intent, RC_AVATAR)
 
     }
 
@@ -89,7 +102,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun save() {
         if (checkAllEditText()) {
-            this.toast("Avatar saved")
+            this.toast("Profile saved")
         }
     }
 
@@ -130,6 +143,30 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
         return true
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        if (resultCode == RESULT_OK && requestCode == RC_AVATAR && intent != null) {
+            extractResult(intent)
+            refreshAvatar()
+        }
+    }
+    private fun extractResult(intent: Intent) {
+        if (!intent.hasExtra(EXTRA_AVATAR)) {
+            throw RuntimeException(
+                "AvatarActivity must receive avatar in result intent")
+        }
+        avatar = intent.getParcelableExtra(EXTRA_AVATAR)
+    }
+    private fun refreshAvatar() {
+        imgAvatar.setImageResource(avatar.imageResId)
+        lblAvatar.setText(avatar.name)
+    }
+
+    companion object {
+        private const val RC_AVATAR: Int = 1
     }
 
 }
