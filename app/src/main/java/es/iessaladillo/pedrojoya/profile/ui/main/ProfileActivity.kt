@@ -2,6 +2,7 @@ package es.iessaladillo.pedrojoya.profile.ui.main
 
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -9,7 +10,9 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import es.iessaladillo.pedrojoya.profile.R
+import es.iessaladillo.pedrojoya.profile.data.local.Database
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
 import es.iessaladillo.pedrojoya.profile.utils.*
@@ -25,15 +28,16 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
+        imgAvatar.setImageResource(Database.queryDefaultAvatar().imageResId)
+        lblAvatar.setText(Database.queryDefaultAvatar().name)
         imgOnClicked()
         imgAvatar.setOnClickListener { navegateToAvatar() }
     }
 
     private fun navegateToAvatar() {
-        //avatar = Avatar(1,R.drawable.bulbasur,"Bulbasur")
-        //val intent = AvatarActivity.newIntent(this,avatar)
-       // startActivity(intent)
         val intent = Intent(this, AvatarActivity::class.java)
+        intent.putExtra("extra_name",lblAvatar.text.toString())
+        intent.putExtra("extra_image",imgAvatar.id)
         startActivity(intent)
 
     }

@@ -3,7 +3,6 @@
     <string name="avatar_title">Select Avatar</string>
     <string name="profile_title">User profile</string>
     <string name="name">Name (*)</string>
-    <string name="avatar">Pikachu</string>
     <string name="nameHint">(name)</string>
     <string name="email">Email (*)</string>
     <string name="emailHint">(email)</string>
@@ -24,4 +23,5 @@
     <string name="avatar_select">Title</string>
     <string name="profile_save">Profile Save</string>
     <string name="invalid_Intent">No es posible realizar dicha acción</string>
+    <string name="avatar_inicial">Avatar Inicial</string>
 </resources>

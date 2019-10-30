@@ -14,18 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pikachu"
-        android:contentDescription="" />
+        android:contentDescription="@string/avatar_inicial" />
 
     <TextView
         android:id="@+id/lblAvatar"
         android:layout_width="409dp"
         android:layout_height="27dp"
-        android:text="@string/avatar"
         android:textAlignment="center"
         android:background="@color/avatar_label_background"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="@dimen/lblAvatarDp"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar"
         app:layout_constraintEnd_toEndOf="@+id/imgAvatar"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar" />
