@@ -44,7 +44,7 @@ class AvatarActivity : AppCompatActivity() {
         startAvatars(imgAvatar7, lblAvatar7, 6)
         startAvatars(imgAvatar8, lblAvatar8, 7)
         startAvatars(imgAvatar9, lblAvatar9, 8)
-        //imgAvatar9.setImageResource(image)
+        imgAvatar9.setImageResource(image)
         lblAvatar9.setText(name)
     }
 

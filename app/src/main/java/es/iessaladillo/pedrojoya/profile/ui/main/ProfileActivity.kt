@@ -35,9 +35,12 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun navegateToAvatar() {
+        //FALLA IMG ID
+        avatar = Avatar(0,imgAvatar.id,lblAvatar.text.toString())
+        var drawable: Drawable = getDrawable(avatar.imageResId)
         val intent = Intent(this, AvatarActivity::class.java)
-        intent.putExtra("extra_name",lblAvatar.text.toString())
-        intent.putExtra("extra_image",imgAvatar.id)
+        intent.putExtra("extra_name",avatar.name)
+        intent.putExtra("extra_image",drawable.toString().toInt())
         startActivity(intent)
 
     }
