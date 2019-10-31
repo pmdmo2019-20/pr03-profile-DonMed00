@@ -11,6 +11,8 @@
         android:id="@+id/imgAvatar"
         android:layout_width="410dp"
         android:layout_height="245dp"
+        android:src="@drawable/pikachu"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,6 +20,7 @@
 
     <TextView
         android:id="@+id/lblAvatar"
+        android:text="Pikachu"
         android:layout_width="409dp"
         android:layout_height="27dp"
         android:textAlignment="center"

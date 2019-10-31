@@ -9,8 +9,7 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
@@ -20,45 +19,30 @@ import es.iessaladillo.pedrojoya.profile.utils.*
 import kotlinx.android.synthetic.main.profile_activity.*
 
 class ProfileActivity : AppCompatActivity() {
-     lateinit var avatar : Avatar
-
+   // lateinit var avatar: Avatar
+    private lateinit var viewModel: ProfileActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
+        viewModel = ViewModelProvider(this).get(ProfileActivityViewModel()::class.java)
         setupViews()
 
-       // restoreInstanceState(savedInstanceState)
-
     }
-    /*override fun onSaveInstanceState(outState: Bundle) {
-        if (outState != null) {
-            super.onSaveInstanceState(outState)
-        }
-        outState?.putParcelable(EXTRA_AVATAR,avatar)
-    }
-    private fun restoreInstanceState(savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-            avatar = savedInstanceState.getParcelable(EXTRA_AVATAR)
-        }
-    }*/
 
     private fun setupViews() {
         txtName.requestFocus()
-        avatar = Database.queryDefaultAvatar()
-        imgAvatar.setImageResource(avatar.imageResId)
-        lblAvatar.setText(avatar.name)
+        //avatar = Database.queryDefaultAvatar()
+        imgAvatar.setImageResource(viewModel.avatar.imageResId)
+        lblAvatar.setText(viewModel.avatar.name)
         imgOnClicked()
         imgAvatar.setOnClickListener { navegateToAvatar() }
+
     }
 
     private fun navegateToAvatar() {
-        //FALLA IMG ID
         val intent = Intent(this, AvatarActivity::class.java)
-       // intent.putExtra("name",avatar.name)
-       // intent.putExtra("image",avatar.imageResId)
-        intent.putExtra(EXTRA_AVATAR,avatar)
-
+        intent.putExtra(EXTRA_AVATAR, viewModel.avatar)
         startActivityForResult(intent, RC_AVATAR)
 
     }
@@ -106,6 +90,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun save() {
+
         if (checkAllEditText()) {
             this.toast("Profile saved")
         }
@@ -158,16 +143,21 @@ class ProfileActivity : AppCompatActivity() {
             refreshAvatar()
         }
     }
+
     private fun extractResult(intent: Intent) {
         if (!intent.hasExtra(EXTRA_AVATAR)) {
             throw RuntimeException(
-                "AvatarActivity must receive avatar in result intent")
+                "AvatarActivity must receive avatar in result intent"
+            )
         }
-        avatar = intent.getParcelableExtra(EXTRA_AVATAR)
+        viewModel.avatar = intent.getParcelableExtra(EXTRA_AVATAR)
+
     }
+
     private fun refreshAvatar() {
-        imgAvatar.setImageResource(avatar.imageResId)
-        lblAvatar.setText(avatar.name)
+        imgAvatar.setImageResource(viewModel.avatar.imageResId)
+        lblAvatar.setText(viewModel.avatar.name)
+
     }
 
     companion object {

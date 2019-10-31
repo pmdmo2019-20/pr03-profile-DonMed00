@@ -23,7 +23,7 @@ class AvatarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.avatar_activity)
         setupViews()
-
+//Test fail, hacer de nuevo para que funcione con imagenes
     }
 
     private fun setupViews() {
