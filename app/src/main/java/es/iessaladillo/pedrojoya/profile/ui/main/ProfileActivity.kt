@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
@@ -20,10 +22,12 @@ import kotlinx.android.synthetic.main.profile_activity.*
 class ProfileActivity : AppCompatActivity() {
      lateinit var avatar : Avatar
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
         setupViews()
+
        // restoreInstanceState(savedInstanceState)
 
     }
@@ -40,6 +44,7 @@ class ProfileActivity : AppCompatActivity() {
     }*/
 
     private fun setupViews() {
+        txtName.requestFocus()
         avatar = Database.queryDefaultAvatar()
         imgAvatar.setImageResource(avatar.imageResId)
         lblAvatar.setText(avatar.name)
@@ -61,7 +66,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun imgOnClicked() {
         imgEmail.setOnClickListener { throwIntent(imgEmail) }
-        imgPhone.setOnClickListener { throwIntent(imgPhone) }
+        imgPhonenumber.setOnClickListener { throwIntent(imgPhonenumber) }
         imgAddress.setOnClickListener { throwIntent(imgAddress) }
         imgWeb.setOnClickListener { throwIntent(imgWeb) }
 
@@ -72,7 +77,7 @@ class ProfileActivity : AppCompatActivity() {
         when (img) {
             imgEmail ->
                 intent = newEmailIntent(txtAddress.text.toString())
-            imgPhone ->
+            imgPhonenumber ->
                 intent = newDialIntent(txtPhonenumber.text.toString())
             imgAddress ->
                 intent = newSearchInMapIntent(txtAddress.text.toString())

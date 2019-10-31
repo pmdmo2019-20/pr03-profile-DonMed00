@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imgPhone"
+        android:id="@+id/imgPhonenumber"
         android:layout_width="@dimen/imgWidth"
         android:layout_height="@dimen/imgHeight"
         android:layout_marginStart="4dp"
@@ -142,7 +142,7 @@
         android:layout_width="@dimen/imgWidth"
         android:layout_height="@dimen/imgHeight"
         app:layout_constraintBottom_toBottomOf="@+id/txtAddress"
-        app:layout_constraintEnd_toEndOf="@+id/imgPhone"
+        app:layout_constraintEnd_toEndOf="@+id/imgPhonenumber"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/txtAddress"
         app:layout_constraintTop_toTopOf="@+id/txtAddress"
