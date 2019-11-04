@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,8 +21,6 @@
     <TextView
         android:id="@+id/lblAvatar"
         android:layout_width="278dp"
-        android:text="Pikachu"
-
         android:layout_height="46dp"
         android:background="@color/avatar_label_background"
         android:textAlignment="center"
@@ -71,7 +68,7 @@
         android:layout_height="39dp"
         android:ems="10"
         android:hint="@string/emailHint"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:nextFocusDown="@+id/txtPhonenumber"
         app:layout_constraintEnd_toEndOf="@+id/txtName"
         app:layout_constraintHorizontal_bias="0.0"
@@ -104,7 +101,8 @@
         android:layout_marginStart="4dp"
         android:ems="10"
         android:hint="@string/phoneHint"
-        android:inputType="textPersonName"
+        android:inputType="phone"
+        android:nextFocusDown="@id/txtAddress"
         app:layout_constraintBottom_toBottomOf="@+id/txtEmail"
         app:layout_constraintStart_toStartOf="@+id/lblPhone"
         app:layout_constraintTop_toBottomOf="@+id/lblPhone"
@@ -138,7 +136,7 @@
         android:layout_height="44dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPostalAddress"
         android:hint="@string/addressHint"
         app:layout_constraintEnd_toEndOf="@+id/txtPhonenumber"
         app:layout_constraintHorizontal_bias="0.0"
@@ -156,7 +154,8 @@
         app:layout_constraintStart_toEndOf="@+id/txtAddress"
         app:layout_constraintTop_toTopOf="@+id/txtAddress"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_map_24dp" />
+        app:srcCompat="@drawable/ic_map_24dp"
+        android:contentDescription="@string/image_of_avatar" />
 
     <TextView
         android:id="@+id/lblWeb"
@@ -173,7 +172,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textWebEditText"
         android:hint="@string/webHint"
         android:nextFocusDown="@id/txtName"
         app:layout_constraintEnd_toEndOf="@+id/txtAddress"
@@ -190,7 +189,8 @@
         app:layout_constraintStart_toEndOf="@+id/txtWeb"
         app:layout_constraintTop_toTopOf="@+id/txtWeb"
         app:layout_constraintVertical_bias="0.466"
-        app:srcCompat="@drawable/ic_web_24dp" />
+        app:srcCompat="@drawable/ic_web_24dp"
+        android:contentDescription="@string/image_of_avatar" />
 
     <TextView
         android:id="@+id/lblRequired"

@@ -11,44 +11,37 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
-import es.iessaladillo.pedrojoya.profile.data.local.Database
-import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity.Companion.EXTRA_AVATAR
 import es.iessaladillo.pedrojoya.profile.utils.*
 import kotlinx.android.synthetic.main.profile_activity.*
 
 class ProfileActivity : AppCompatActivity() {
-   // lateinit var avatar: Avatar
     private lateinit var viewModel: ProfileActivityViewModel
-
+//Mirar tipo de input del phone
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
         viewModel = ViewModelProvider(this).get(ProfileActivityViewModel()::class.java)
         setupViews()
-
     }
 
     private fun setupViews() {
         txtName.requestFocus()
-        //avatar = Database.queryDefaultAvatar()
-        imgAvatar.setImageResource(viewModel.avatar.imageResId)
-        lblAvatar.setText(viewModel.avatar.name)
-        imgOnClicked()
+        refreshAvatar()
+        imagesOnClicked()
         imgAvatar.setOnClickListener { navegateToAvatar() }
-
     }
 
     private fun navegateToAvatar() {
         val intent = Intent(this, AvatarActivity::class.java)
-        intent.putExtra(EXTRA_AVATAR, viewModel.avatar)
+        intent.putExtra(EXTRA_AVATAR, viewModel.getAvatar())
         startActivityForResult(intent, RC_AVATAR)
 
     }
 
 
-    private fun imgOnClicked() {
+    private fun imagesOnClicked() {
         imgEmail.setOnClickListener { throwIntent(imgEmail) }
         imgPhonenumber.setOnClickListener { throwIntent(imgPhonenumber) }
         imgAddress.setOnClickListener { throwIntent(imgAddress) }
@@ -60,7 +53,7 @@ class ProfileActivity : AppCompatActivity() {
         lateinit var intent: Intent
         when (img) {
             imgEmail ->
-                intent = newEmailIntent(txtAddress.text.toString())
+                intent = newEmailIntent(txtEmail.text.toString())
             imgPhonenumber ->
                 intent = newDialIntent(txtPhonenumber.text.toString())
             imgAddress ->
@@ -76,22 +69,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.profile_activity, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.mnuSave) {
-            save()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun save() {
-
         if (checkAllEditText()) {
+            imgAvatar.hideSoftKeyboard()
             this.toast("Profile saved")
         }
     }
@@ -109,29 +89,35 @@ class ProfileActivity : AppCompatActivity() {
             txtName ->
                 if (editText.text.toString().isBlank()) {
                     editText.error = getString(R.string.profile_invalid_name)
+                    editText.requestFocus()
                     return false
                 }
             txtEmail ->
                 if (!editText.text.toString().isValidEmail()) {
                     editText.error = getString(R.string.profile_invalid_email)
+                    editText.requestFocus()
                     return false
                 }
             txtPhonenumber ->
                 if (!editText.text.toString().isValidPhone()) {
                     editText.error = getString(R.string.profile_invalid_phonenumber)
+                    editText.requestFocus()
                     return false
                 }
             txtAddress ->
                 if (editText.text.toString().isBlank()) {
                     editText.error = getString(R.string.profile_invalid_address)
+                    editText.requestFocus()
                     return false
                 }
             txtWeb ->
                 if (!editText.text.toString().isValidUrl()) {
                     editText.error = getString(R.string.profile_invalid_web)
+                    editText.requestFocus()
                     return false
                 }
         }
+
         return true
     }
 
@@ -150,14 +136,27 @@ class ProfileActivity : AppCompatActivity() {
                 "AvatarActivity must receive avatar in result intent"
             )
         }
-        viewModel.avatar = intent.getParcelableExtra(EXTRA_AVATAR)
+        viewModel.setAvatar(intent.getParcelableExtra(EXTRA_AVATAR))
 
     }
 
     private fun refreshAvatar() {
-        imgAvatar.setImageResource(viewModel.avatar.imageResId)
-        lblAvatar.setText(viewModel.avatar.name)
+        imgAvatar.setImageResource(viewModel.getAvatar().imageResId)
+        lblAvatar.text = viewModel.getAvatar().name
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.profile_activity, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.mnuSave) {
+            save()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

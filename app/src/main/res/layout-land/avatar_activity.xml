@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,14 +10,16 @@
         android:layout_width="@dimen/newWidth"
         android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar4"
         android:layout_width="@dimen/newWidth"
         android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar7"
@@ -29,7 +30,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar2"
@@ -37,14 +39,16 @@
         android:layout_height="@dimen/newHeight"
         app:layout_constraintEnd_toEndOf="@+id/imgAvatar1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblAvatar1" />
+        app:layout_constraintTop_toBottomOf="@+id/lblAvatar1"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar5"
         android:layout_width="@dimen/newWidth"
         android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar4" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar4"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar8"
@@ -52,21 +56,24 @@
         android:layout_height="@dimen/newHeight"
         app:layout_constraintBottom_toBottomOf="@+id/imgAvatar5"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar5"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar7" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar7"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar3"
         android:layout_width="@dimen/newWidth"
         android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar2"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar6"
         android:layout_width="@dimen/newWidth"
         android:layout_height="@dimen/newHeight"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar3"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar5" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar5"
+        android:contentDescription="@string/image_of_avatar" />
 
     <ImageView
         android:id="@+id/imgAvatar9"
@@ -75,7 +82,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar6"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar8" />
+        app:layout_constraintTop_toBottomOf="@+id/imgAvatar8"
+        android:contentDescription="@string/image_of_avatar" />
 
     <CheckBox
         android:id="@+id/chkAvatar1"

@@ -20,8 +20,9 @@
     <string name="profile_invalid_phonenumber">Invalid phone</string>
     <string name="profile_invalid_address">Address is required</string>
     <string name="profile_invalid_web">Invalid web</string>
-    <string name="avatar_select">Title</string>
-    <string name="profile_save">Profile Save</string>
+    <string name="avatar_select">Select</string>
+    <string name="profile_save">Save</string>
     <string name="invalid_Intent">No es posible realizar dicha acción</string>
     <string name="avatar_inicial">Avatar Inicial</string>
+    <string name="image_of_avatar">image of Avatar</string>
 </resources>

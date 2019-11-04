@@ -12,11 +12,12 @@ import androidx.core.os.bundleOf
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.data.local.Database
 import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
+import es.iessaladillo.pedrojoya.profile.utils.toast
 import kotlinx.android.synthetic.main.avatar_activity.*
 
 class AvatarActivity : AppCompatActivity() {
-    val database = Database.queryAllAvatars()
-    val listCheckbox: ArrayList<CheckBox> = ArrayList()
+    private val database = Database.queryAllAvatars()
+    private val listCheckbox: ArrayList<CheckBox> = ArrayList()
 
     lateinit var avatar: Avatar
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,10 +70,9 @@ class AvatarActivity : AppCompatActivity() {
             ) != null
         ) {
             avatar = intent.getParcelableExtra(EXTRA_AVATAR)
+        }else{
+            this.toast("Receive Data Failed")
         }
-        //Excepcion
-
-
     }
 
     private fun initAvatar() {
@@ -111,12 +111,10 @@ class AvatarActivity : AppCompatActivity() {
     }
 
     private fun chooseAvatar() {
-        var i: Int =0
-        for (item in listCheckbox){
+        for ((i, item) in listCheckbox.withIndex()){
             if(item.isChecked){
                 avatar = database[i]
             }
-            i++
         }
     }
 

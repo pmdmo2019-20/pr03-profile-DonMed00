@@ -5,6 +5,14 @@ import es.iessaladillo.pedrojoya.profile.data.local.entity.Avatar
 
 
 class ProfileActivityViewModel: ViewModel() {
-     var avatar: Avatar = Database.queryDefaultAvatar()
+      private var avatar = Database.queryDefaultAvatar()
+
+     fun getAvatar(): Avatar {
+          return avatar
+     }
+     fun setAvatar(avatar: Avatar){
+          this.avatar = avatar
+     }
+
 
 }
