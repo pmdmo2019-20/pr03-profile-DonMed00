@@ -24,9 +24,11 @@ class AvatarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.avatar_activity)
         setupViews()
-//Test fail, hacer de nuevo para que funcione con imagenes
     }
 
+    /**
+     * Init the activity and their elements
+     */
     private fun setupViews() {
         receiveIntent()
         initCheckbox()
@@ -34,6 +36,9 @@ class AvatarActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Add the checkboxs to a list, late call their checkedCheckbox() when click
+     */
     private fun initCheckbox() {
         listCheckbox.add(chkAvatar1)
         listCheckbox.add(chkAvatar2)
@@ -50,6 +55,10 @@ class AvatarActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * @param item CheckBox
+     * Check if checkbox is enabled,if not, enable it, and disable the rest
+     */
     private fun checkedCheckBox(item: CheckBox) {
         for (itemAux in listCheckbox) {
             if (itemAux != item) {
@@ -63,18 +72,23 @@ class AvatarActivity : AppCompatActivity() {
 
     }
 
-
+    /**
+     * This receive intent of avatar
+     */
     private fun receiveIntent() {
         if (intent != null && intent.hasExtra(EXTRA_AVATAR) && intent.extras.getParcelable<Avatar>(
                 EXTRA_AVATAR
             ) != null
         ) {
             avatar = intent.getParcelableExtra(EXTRA_AVATAR)
-        }else{
+        } else {
             this.toast("Receive Data Failed")
         }
     }
 
+    /**
+     * Init the differents images with avatars
+     */
     private fun initAvatar() {
         startAvatars(imgAvatar1, lblAvatar1, 0)
         startAvatars(imgAvatar2, lblAvatar2, 1)
@@ -89,6 +103,9 @@ class AvatarActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Select the avatar that is received
+     */
     private fun selectInitAvatar() {
         for (item in database) {
             if (item.imageResId == avatar.imageResId) {
@@ -97,6 +114,12 @@ class AvatarActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * @param imgAvatar ImageView
+     * @param lblAvatar TextView
+     * @param i Int
+     * Assigned for the img, their values of the avatars
+     */
     private fun startAvatars(imgAvatar: ImageView, lblAvatar: TextView, i: Int) {
         val avatar: Avatar = database[i]
         imgAvatar.setImageResource(avatar.imageResId)
@@ -104,23 +127,34 @@ class AvatarActivity : AppCompatActivity() {
 
     }
 
+    /**
+     *Return the avatar choosed to the first activity
+     */
     private fun selectAvatar() {
         chooseAvatar()
         setActivityResult(avatar)
         finish()
     }
 
+    /**
+     * Depend of the checkbox enabled, choose a avatar
+     */
     private fun chooseAvatar() {
-        for ((i, item) in listCheckbox.withIndex()){
-            if(item.isChecked){
+        for ((i, item) in listCheckbox.withIndex()) {
+            if (item.isChecked) {
                 avatar = database[i]
             }
         }
     }
 
+    /**
+     * @param avatar Avatar
+     * Receive the avatar
+     */
     private fun setActivityResult(avatar: Avatar) {
         val result = Intent().putExtras(
-            bundleOf(EXTRA_AVATAR to avatar))
+            bundleOf(EXTRA_AVATAR to avatar)
+        )
         setResult(RESULT_OK, result)
     }
 

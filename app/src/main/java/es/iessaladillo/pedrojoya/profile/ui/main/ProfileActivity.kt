@@ -8,8 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.profile.R
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity
 import es.iessaladillo.pedrojoya.profile.ui.avatar.AvatarActivity.Companion.EXTRA_AVATAR
@@ -17,15 +17,16 @@ import es.iessaladillo.pedrojoya.profile.utils.*
 import kotlinx.android.synthetic.main.profile_activity.*
 
 class ProfileActivity : AppCompatActivity() {
-    private lateinit var viewModel: ProfileActivityViewModel
-//Mirar tipo de input del phone
+    private val viewModel: ProfileActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
-        viewModel = ViewModelProvider(this).get(ProfileActivityViewModel()::class.java)
         setupViews()
     }
 
+    /**
+     * Init the activity and their elements
+     */
     private fun setupViews() {
         txtName.requestFocus()
         refreshAvatar()
@@ -33,6 +34,10 @@ class ProfileActivity : AppCompatActivity() {
         imgAvatar.setOnClickListener { navegateToAvatar() }
     }
 
+
+    /**
+     * When avatar is clicked, navegate to the other activity, sending the avatar and waiting for result
+     */
     private fun navegateToAvatar() {
         val intent = Intent(this, AvatarActivity::class.java)
         intent.putExtra(EXTRA_AVATAR, viewModel.getAvatar())
@@ -41,6 +46,9 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * When the images are clicked, them call his throwIntent(image).
+     */
     private fun imagesOnClicked() {
         imgEmail.setOnClickListener { throwIntent(imgEmail) }
         imgPhonenumber.setOnClickListener { throwIntent(imgPhonenumber) }
@@ -49,6 +57,10 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * @param img ImageView
+     * Depend of the img, do a intent different to the defaults apps.
+     */
     private fun throwIntent(img: ImageView) {
         lateinit var intent: Intent
         when (img) {
@@ -69,6 +81,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * If checkAllEditText(), close the keyboard(if it open) and show a toast with a message
+     */
     private fun save() {
         if (checkAllEditText()) {
             imgAvatar.hideSoftKeyboard()
@@ -76,6 +91,10 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * If all editTexts are ok, return true
+     * @return Boolean
+     */
     private fun checkAllEditText(): Boolean {
         if (checkEditText(txtName) && checkEditText(txtEmail) && checkEditText(txtPhonenumber) && checkEditText(
                 txtAddress
@@ -84,6 +103,11 @@ class ProfileActivity : AppCompatActivity() {
         return false
     }
 
+    /**
+     * @param editText EditText
+     * Depend of editText, check if it´s ok. For example, isn´t empty.
+     * @return Boolean
+     */
     private fun checkEditText(editText: EditText): Boolean {
         when (editText) {
             txtName ->
@@ -121,7 +145,12 @@ class ProfileActivity : AppCompatActivity() {
         return true
     }
 
-
+    /**
+     * @param requestCode Int
+     * @param resultCode Int
+     * @param intent Intent?
+     * Override Method: Check if intent is ok and call exctract(intent) and refreshAvatar()
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
         if (resultCode == RESULT_OK && requestCode == RC_AVATAR && intent != null) {
@@ -130,6 +159,10 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * @param intent Intent
+     * Gets the avatar in intent
+     */
     private fun extractResult(intent: Intent) {
         if (!intent.hasExtra(EXTRA_AVATAR)) {
             throw RuntimeException(
@@ -140,6 +173,9 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Adquires the name and resId of avatar actual
+     */
     private fun refreshAvatar() {
         imgAvatar.setImageResource(viewModel.getAvatar().imageResId)
         lblAvatar.text = viewModel.getAvatar().name

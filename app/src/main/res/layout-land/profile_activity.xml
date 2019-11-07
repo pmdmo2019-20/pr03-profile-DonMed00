@@ -101,7 +101,7 @@
         android:layout_marginStart="4dp"
         android:ems="10"
         android:hint="@string/phoneHint"
-        android:inputType="phone"
+        android:inputType="numberSigned"
         android:nextFocusDown="@id/txtAddress"
         app:layout_constraintBottom_toBottomOf="@+id/txtEmail"
         app:layout_constraintStart_toStartOf="@+id/lblPhone"
